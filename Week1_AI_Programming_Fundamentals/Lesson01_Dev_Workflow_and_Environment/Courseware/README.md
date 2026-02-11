@@ -56,12 +56,16 @@ Vibe Coding - Programming Paradigm and Development Workflow in the AI Era
 
 ## Course Materials
 
-- 📊 **PPT Slides**: `01_Vibe Coding AI编程范式与快速上手实践.pptx`
-- 🎨 **Excalidraw Source File**: `01_Vibe Coding AI编程范式与快速上手实践.excalidraw`
-- 📝 **Live Collaboration Document**: `260204直播协作文档.excalidraw`
-- 📋 **Project Planning Documents**: 
-  - `plans/chatgpt_clone_plan_82c449d6.plan.md`
-  - `plans/deepseek_chat_system_d15b7da2.plan.md`
+课件与资料已按目录分类：
+
+- **01_课件/** — 幻灯片与 Excalidraw 源文件
+  - 📊 **PPT Slides**: [01_课件/01_Vibe Coding AI编程范式与快速上手实践.pptx](./01_课件/01_Vibe%20Coding%20AI编程范式与快速上手实践.pptx)
+  - 🎨 **Excalidraw Source File**: [01_课件/01_Vibe Coding AI编程范式与快速上手实践.excalidraw](./01_课件/01_Vibe%20Coding%20AI编程范式与快速上手实践.excalidraw)
+  - 📝 **Live Collaboration Document**: [01_课件/260204直播协作文档.excalidraw](./01_课件/260204直播协作文档.excalidraw)
+- **02_课程资料/** — 规划文档与补充资料
+  - 📋 **Project Planning Documents**:
+    - [02_课程资料/plans/chatgpt_clone_plan_82c449d6.plan.md](./02_课程资料/plans/chatgpt_clone_plan_82c449d6.plan.md)
+    - [02_课程资料/plans/deepseek_chat_system_d15b7da2.plan.md](./02_课程资料/plans/deepseek_chat_system_d15b7da2.plan.md)
 
 ### How to Open Excalidraw Files
 

@@ -58,8 +58,14 @@
 
 ## 课件资源
 
-- 📊 **PPT 课件**: `02_从零开发数据分析助理-Cursor应用进阶.pptx`
-- 🎨 **Excalidraw 源文件**: `02_从零开发数据分析助理-Cursor应用进阶.excalidraw`
+课件与资料已按目录分类：
+
+- **01_课件/** — 幻灯片与 Excalidraw 源文件
+  - 📊 **PPT 课件**: [01_课件/02_从零开发数据分析助理-Cursor应用进阶.pptx](./01_课件/02_从零开发数据分析助理-Cursor应用进阶.pptx)
+  - 🎨 **Excalidraw 源文件**: [01_课件/02_从零开发数据分析助理-Cursor应用进阶.excalidraw](./01_课件/02_从零开发数据分析助理-Cursor应用进阶.excalidraw)
+  - 📝 **直播协作文档**: [01_课件/260205直播协作文档.excalidraw](./01_课件/260205直播协作文档.excalidraw)
+- **02_课程资料/** — 补充资料
+  - 📄 **参考资料**: [02_课程资料/Gemin3-DeepResearch文档-大模型驱动的智能数据分析系统架构.pdf](./02_课程资料/Gemin3-DeepResearch文档-大模型驱动的智能数据分析系统架构.pdf)
 
 ### 如何打开 Excalidraw 文件
 
@@ -81,7 +87,7 @@
 
 - [Cursor 官方文档](https://docs.cursor.com/)
 - [MCP 协议规范](https://modelcontextprotocol.io/)
-- [项目示例代码](../../)
+- [NL2SQLAgent 项目代码](../NL2SQLAgent/)
 
 ---
 
