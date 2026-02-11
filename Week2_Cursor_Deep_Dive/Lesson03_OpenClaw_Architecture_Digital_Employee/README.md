@@ -1,18 +1,19 @@
-# Lesson 03 & 04: OpenClaw 源码架构拆解与二次开发 · 搭建数字员工
+# Lesson 03 & 04: OpenClaw Source Architecture & Secondary Development — Building a Digital Employee
 
-本课由原 **Lesson 03**（Cursor 核心能力与上下文工程）与 **Lesson 04**（MCP 集成与豆包式应用复刻）合并，以 **OpenClaw** 为主线，完成源码架构拆解、二次开发与数字员工搭建。
+This lesson merges **Lesson 03** (Cursor core features and context engineering) and **Lesson 04** (MCP integration and Doubao-style app clone), using **OpenClaw** as the main thread for source breakdown, secondary development, and digital employee setup.
 
-## 主题
+## Topics
 
-- OpenClaw 源码架构拆解
-- 基于 OpenClaw 的二次开发
-- 搭建数字员工（含飞书等集成）
+- OpenClaw source architecture breakdown
+- Secondary development based on OpenClaw
+- Building a digital employee (e.g. Feishu integration)
 
-## 课程资料
+## Course Materials
 
 - **01_课件/**
   - [OpenClaw 接入 AI 数字员工 - 飞书配置教程](./01_课件/OpenClaw%20接入%20AI%20数字员工%20-%20飞书配置教程.html)
+  - Excalidraw / PPTX: see files in `01_课件/`
 
-## 相关
+## Related
 
-- [← 返回 Week 2 目录](../README.md)
+- [← Back to Week 2](../README.md)

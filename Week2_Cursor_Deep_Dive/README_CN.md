@@ -12,7 +12,7 @@
 
 ## 课程安排
 
-- **[Lesson 03 & 04](./Lesson03_OpenClaw_Architecture_Digital_Employee/README.md)**：OpenClaw 源码架构拆解与二次开发 · 搭建数字员工
+- **[Lesson 03 & 04](./Lesson03_OpenClaw_Architecture_Digital_Employee/README_CN.md)**：OpenClaw 源码架构拆解与二次开发 · 搭建数字员工
   - OpenClaw 项目源码拆解
   - 基于 Cursor 的二次开发
   - 搭建数字员工（如飞书接入）
