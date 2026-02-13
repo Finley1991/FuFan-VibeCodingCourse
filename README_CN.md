@@ -119,7 +119,7 @@
 |:---:|:---:|:---:|:---:|
 | **导学** | 环境配置与工具准备 | 3 | - |
 | **Week 1** | AI编程范式与快速上手 | 2 | 智能数据分析助理 |
-| **Week 2** | Cursor AI IDE深入实践 | 2 | ClawdBot |
+| **Week 2** | Cursor AI IDE深入实践 | 3 | ClawdBot |
 | **Week 3** | Claude Code工程实战 | 2 | 多模态RAG知识库 |
 | **Week 4** | 企业级进阶实战 | 1 | 智能文档审核Agent |
 
@@ -150,7 +150,7 @@
 
 ```bash
 # 1. 克隆本仓库
-git clone https://github.com/YOUR_USERNAME/VibeCodingCourse.git
+git clone https://github.com/fufankeji/VibeCodingCourse_v1.git
 
 # 2. 从导学开始
 cd VibeCodingCourse/00_Introduction

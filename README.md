@@ -119,7 +119,7 @@
 |:---:|:---:|:---:|:---:|
 | **Intro** | Environment Setup | 3 | - |
 | **Week 1** | AI Programming Fundamentals | 2 | Smart Data Assistant |
-| **Week 2** | Cursor AI IDE Deep Dive | 2 | ClawdBot |
+| **Week 2** | Cursor AI IDE Deep Dive | 3 | ClawdBot |
 | **Week 3** | Claude Code Engineering | 2 | Multimodal RAG System |
 | **Week 4** | Enterprise Practice | 1 | Document Review Agent |
 
@@ -150,7 +150,7 @@
 
 ```bash
 # 1. Clone this repository
-git clone https://github.com/YOUR_USERNAME/VibeCodingCourse.git
+git clone https://github.com/fufankeji/VibeCodingCourse_v1.git
 
 # 2. Start with Introduction
 cd VibeCodingCourse/00_Introduction
