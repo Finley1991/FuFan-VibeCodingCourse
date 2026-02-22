@@ -33,7 +33,7 @@
 | [Intro-01](./00_Introduction/导学1：网络环境配置与VPN准备.html) | Network & VPN Configuration | 15-30 min |
 | [Intro-02](./00_Introduction/导学2：Cursor安装部署与订阅.html) | Cursor AI IDE Setup & Subscription | 20-30 min |
 | [Intro-03](./00_Introduction/导学3：Git安装与GitHub配置.html) | Git Installation & GitHub Configuration | 20-30 min |
-| [Intro-04](./00_Introduction/导学4：Claude Code部署配置教程.html) | Claude Code Deployment & Configuration | 30-45 min |
+| [Intro-04](./00_Introduction/导学4：Claude%20Code部署配置教程.html) | Claude Code Deployment & Configuration | 30-45 min |
 
 </div>
 

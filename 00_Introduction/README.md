@@ -72,7 +72,7 @@ Three key steps:
 | [Intro-01](./导学1：网络环境配置与VPN准备.html) | Network & VPN | Network environment detection and VPN configuration |
 | [Intro-02](./导学2：Cursor安装部署与订阅.html) | Cursor Setup | Cursor AI IDE installation, registration, and Pro subscription |
 | [Intro-03](./导学3：Git安装与GitHub配置.html) | Git & GitHub | Git installation, GitHub account, and Token configuration |
-| [Intro-04](./导学4：Claude Code部署配置教程.html) | Claude Code | Claude Code local deployment, configuration, and Cursor plugin integration |
+| [Intro-04](./导学4：Claude%20Code部署配置教程.html) | Claude Code | Claude Code local deployment, configuration, and Cursor plugin integration |
 
 ---
 
