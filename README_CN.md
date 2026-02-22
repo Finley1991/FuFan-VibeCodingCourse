@@ -33,6 +33,7 @@
 | [Intro-01](./00_Introduction/导学1：网络环境配置与VPN准备.html) | 网络环境配置与 VPN 准备 | 15-30 分钟 |
 | [Intro-02](./00_Introduction/导学2：Cursor安装部署与订阅.html) | Cursor AI IDE 安装与订阅 | 20-30 分钟 |
 | [Intro-03](./00_Introduction/导学3：Git安装与GitHub配置.html) | Git 安装与 GitHub 配置 | 20-30 分钟 |
+| [Intro-04](./00_Introduction/导学4：Claude Code部署配置教程.html) | Claude Code 本地部署与配置教程 | 30-45 分钟 |
 
 </div>
 
@@ -117,7 +118,7 @@
 
 | 阶段 | 主题 | 课时 | 项目实战 |
 |:---:|:---:|:---:|:---:|
-| **导学** | 环境配置与工具准备 | 3 | - |
+| **导学** | 环境配置与工具准备 | 4 | - |
 | **Week 1** | AI编程范式与快速上手 | 2 | 智能数据分析助理 |
 | **Week 2** | Cursor AI IDE深入实践 | 3 | ClawdBot |
 | **Week 3** | Claude Code工程实战 | 2 | 多模态RAG知识库 |

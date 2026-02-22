@@ -33,6 +33,7 @@
 | [Intro-01](./00_Introduction/导学1：网络环境配置与VPN准备.html) | Network & VPN Configuration | 15-30 min |
 | [Intro-02](./00_Introduction/导学2：Cursor安装部署与订阅.html) | Cursor AI IDE Setup & Subscription | 20-30 min |
 | [Intro-03](./00_Introduction/导学3：Git安装与GitHub配置.html) | Git Installation & GitHub Configuration | 20-30 min |
+| [Intro-04](./00_Introduction/导学4：Claude Code部署配置教程.html) | Claude Code Deployment & Configuration | 30-45 min |
 
 </div>
 
@@ -117,7 +118,7 @@
 
 | Phase | Topic | Lessons | Project |
 |:---:|:---:|:---:|:---:|
-| **Intro** | Environment Setup | 3 | - |
+| **Intro** | Environment Setup | 4 | - |
 | **Week 1** | AI Programming Fundamentals | 2 | Smart Data Assistant |
 | **Week 2** | Cursor AI IDE Deep Dive | 3 | ClawdBot |
 | **Week 3** | Claude Code Engineering | 2 | Multimodal RAG System |
