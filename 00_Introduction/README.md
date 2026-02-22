@@ -10,7 +10,7 @@
 
 Before embarking on your Vibe Coding journey, you need to complete the development environment setup. This step may seem simple, but it's the root cause of many issues students encounter later.
 
-**Why Git Matters for AI Programming?**
+**Why Vibe Coding Tools Need Proper Setup?**
 
 <div align="center">
   <img src="./images/cursor_git_collaboration.png" width="85%" alt="Why Git is Essential for AI Programming">
@@ -93,6 +93,7 @@ After completing this phase, you will be able to:
 - [x] Complete Cursor Pro subscription (optional)
 - [x] Install Git and configure GitHub account
 - [x] Complete your first code commit using Cursor Agent
+- [x] Install and configure Claude Code (choose official subscription or CC-Switch API key)
 
 ---
 
@@ -107,6 +108,7 @@ Before moving to Week 1, ensure the following are completed:
 [ ] Git installed, git --version returns version number
 [ ] GitHub Personal Access Token created
 [ ] Can use Cursor Agent to perform Git operations
+[ ] Claude Code installed and authentication configured
 ```
 
 ---
