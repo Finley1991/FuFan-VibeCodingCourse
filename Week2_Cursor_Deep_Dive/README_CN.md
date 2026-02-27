@@ -12,10 +12,15 @@
 
 ## 课程安排
 
-- **[Lesson 03 & 04](./Lesson03_OpenClaw_Architecture_Digital_Employee/README_CN.md)**：OpenClaw 源码架构拆解与二次开发 · 搭建数字员工
-  - OpenClaw 项目源码拆解
-  - 基于 Cursor 的二次开发
-  - 搭建数字员工（如飞书接入）
+- **[Lesson 03](./Lesson03_OpenClaw_Architecture_Digital_Employee/README_CN.md)**：OpenClaw 源码架构拆解
+  - OpenClaw 项目源码分析
+  - Cursor 核心能力与上下文工程
+  - 飞书数字员工集成搭建
+
+- **[Lesson 04](./Lesson04_OpenClaw_Custom_Dev_Full_Process/README.md)**：OpenClaw 二次开发完整流程
+  - 系统架构规范文档（v1.0 & v2.0）
+  - VibeCoding 直播课：Claude Code 与 Codex 实战二次开发
+  - 飞书集成配置 + Claude Code 部署配置教程
 
 ## 学习成果
 

@@ -12,10 +12,15 @@ Master "replication skills": analyze existing products and quickly recreate them
 
 ## Lessons
 
-- **[Lesson 03 & 04](./Lesson03_OpenClaw_Architecture_Digital_Employee/README.md)**: OpenClaw Source Architecture & Secondary Development — Building a Digital Employee
-  - OpenClaw project source code breakdown
-  - Secondary development with Cursor
-  - Building a digital employee (e.g. Feishu integration)
+- **[Lesson 03](./Lesson03_OpenClaw_Architecture_Digital_Employee/README.md)**: OpenClaw Source Architecture Breakdown
+  - OpenClaw project source code analysis
+  - Cursor core features and context engineering
+  - Feishu digital employee integration setup
+
+- **[Lesson 04](./Lesson04_OpenClaw_Custom_Dev_Full_Process/README.md)**: OpenClaw Custom Development — Full Process
+  - System architecture specification (v1.0 & v2.0)
+  - VibeCoding live session: secondary development with Claude Code & Codex
+  - Feishu integration + Claude Code deployment configuration
 
 ## Learning Outcomes
 
