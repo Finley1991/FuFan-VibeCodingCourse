@@ -55,6 +55,11 @@
 
 </div>
 
+### Week 4 Latest Update
+
+- **[Lesson 07: Document Review Agent](./Week4_Enterprise_Practice/Lesson07_Document_Review_Agent/)** is now available.
+- Includes complete project code in `AgentTeamProject` and teaching materials in `CourseWare`.
+
 ---
 
 ## 🚀 The Vibe Coding Development Paradigm

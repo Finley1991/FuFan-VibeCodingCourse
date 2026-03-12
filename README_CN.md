@@ -55,6 +55,11 @@
 
 </div>
 
+### Week 4 最新更新
+
+- **[Lesson 07：文档审核 Agent](./Week4_Enterprise_Practice/Lesson07_Document_Review_Agent/)** 已上线。
+- 包含完整项目代码目录 `AgentTeamProject` 与课程资料目录 `CourseWare`。
+
 ---
 
 ## 🚀 Vibe Coding 研发新范式
