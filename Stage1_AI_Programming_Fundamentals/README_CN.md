@@ -1,4 +1,4 @@
-# 第一周：AI 编程基础
+# 阶段一：AI 编程基础
 
 <div align="center">
 

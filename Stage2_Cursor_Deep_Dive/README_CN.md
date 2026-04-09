@@ -1,4 +1,4 @@
-# 第二周：Cursor 深入实战
+# 阶段二：Cursor 深入实战
 
 <div align="center">
 

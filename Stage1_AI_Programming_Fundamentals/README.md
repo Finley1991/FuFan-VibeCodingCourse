@@ -1,4 +1,4 @@
-# Week 1: AI Programming Fundamentals
+# Stage 1: AI Programming Fundamentals
 
 <div align="center">
 

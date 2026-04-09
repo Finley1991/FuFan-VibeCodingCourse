@@ -1,4 +1,4 @@
-# Week 2: Cursor Deep Dive
+# Stage 2: Cursor Deep Dive
 
 <div align="center">
 

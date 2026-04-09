@@ -1,4 +1,4 @@
-# Week 3: Claude Code Engineering
+# Stage 3: Claude Code Engineering
 
 <div align="center">
 

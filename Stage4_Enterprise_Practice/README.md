@@ -1,4 +1,4 @@
-# Week 4: Enterprise Practice
+# Stage 4: Enterprise Practice
 
 ## Objectives
 
@@ -24,7 +24,7 @@ Independently deliver a production-ready engineering project with complete busin
 
 ## Courseware
 
-Week 4 includes both presentation and editable whiteboard assets:
+Stage 4 includes both presentation and editable whiteboard assets:
 
 - `05_CC_Agent-Teams.pptx`
 - `20260311-直播协作文档.excalidraw`
