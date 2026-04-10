@@ -41,4 +41,4 @@ This lesson covers Claude Code architecture and engineering workflows, and now i
 
 ## Related
 
-- [← Back to Week 3](../README.md)
+- [← Back to Stage 3](../README.md)

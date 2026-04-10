@@ -26,4 +26,4 @@ Secondary development of OpenClaw using Cursor, Claude Code, and Codex, covering
 
 ## Related
 
-- [← Back to Week 2](../README.md)
+- [← Back to Stage 2](../README.md)

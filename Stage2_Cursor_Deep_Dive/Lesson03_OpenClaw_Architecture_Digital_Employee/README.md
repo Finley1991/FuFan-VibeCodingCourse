@@ -16,4 +16,4 @@ This lesson merges **Lesson 03** (Cursor core features and context engineering) 
 
 ## Related
 
-- [← Back to Week 2](../README.md)
+- [← Back to Stage 2](../README.md)

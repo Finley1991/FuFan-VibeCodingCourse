@@ -21,4 +21,4 @@ It is a bonus module and does not change the numbering of the core paid lessons 
 
 ## Related
 
-- [← Back to Week 3](../README.md)
+- [← Back to Stage 3](../README.md)

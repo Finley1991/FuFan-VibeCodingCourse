@@ -16,4 +16,4 @@
 
 ## 相关
 
-- [← 返回 Week 2 目录](../README_CN.md)
+- [← 返回阶段二目录](../README_CN.md)

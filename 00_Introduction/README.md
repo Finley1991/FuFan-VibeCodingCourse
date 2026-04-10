@@ -99,7 +99,7 @@ After completing this phase, you will be able to:
 
 ## Completion Checklist
 
-Before moving to Week 1, ensure the following are completed:
+Before moving to Stage 1, ensure the following are completed:
 
 ```
 [ ] VPN configured, ip138.com shows overseas IP

@@ -16,4 +16,4 @@ This lesson focuses on building a multimodal RAG system, covering document parsi
 
 ## Related
 
-- [Back to Week 3](../README.md)
+- [← Back to Stage 3](../README.md)
