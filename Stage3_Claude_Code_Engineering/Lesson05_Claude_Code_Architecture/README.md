@@ -39,6 +39,16 @@ This lesson covers Claude Code architecture and engineering workflows, and now i
   - [langextract_specification-v1.0.md](./GraphRAGAgent/docs/langextract_specification-v1.0.md)
   - [mineru_specification-v1.0.md](./GraphRAGAgent/docs/mineru_specification-v1.0.md)
 
+## About `.excalidraw` Files
+
+The `.excalidraw` files are the **original editable courseware**. You can modify and customize them as needed.
+
+**How to Open:**
+
+1. Visit [https://excalidraw.com/](https://excalidraw.com/) (VPN required)
+2. Click the menu icon (☰) → **Open** (Ctrl+O)
+3. Select the `.excalidraw` file from your local drive
+
 ## Related
 
 - [← Back to Stage 3](../README.md)

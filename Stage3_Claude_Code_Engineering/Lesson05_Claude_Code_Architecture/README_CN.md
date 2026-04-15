@@ -39,6 +39,16 @@
   - [langextract_specification-v1.0.md](./GraphRAGAgent/docs/langextract_specification-v1.0.md)
   - [mineru_specification-v1.0.md](./GraphRAGAgent/docs/mineru_specification-v1.0.md)
 
+## 关于 `.excalidraw` 文件
+
+`.excalidraw` 文件是**原始可编辑课件**，你可以根据需要进行修改和定制。
+
+**打开方式：**
+
+1. 访问 [https://excalidraw.com/](https://excalidraw.com/)（需要梯子）
+2. 点击菜单图标 (☰) → **打开** (Ctrl+O)
+3. 选择本地的 `.excalidraw` 文件
+
 ## 相关
 
 - [← 返回阶段三目录](../README_CN.md)
