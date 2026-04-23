@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -f .claude/commands/stream-api-route.md)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(mv /Users/muyu/MuyuWorkSpace/saas-builder-workflow /Users/muyu/MuyuWorkSpace/FF-SaaSBuilder)",
+      "Bash(mkdir -p /Users/muyu/MuyuWorkSpace/FF-SaaSBuilder/.claude/skills /Users/muyu/MuyuWorkSpace/FF-SaaSBuilder/.claude/commands)",
+      "Bash(mv '/Users/muyu/MuyuWorkSpace/FF-SaaSBuilder/skills/*' /Users/muyu/MuyuWorkSpace/FF-SaaSBuilder/.claude/skills/)",
+      "Bash(mv '/Users/muyu/MuyuWorkSpace/FF-SaaSBuilder/commands/*' /Users/muyu/MuyuWorkSpace/FF-SaaSBuilder/.claude/commands/)",
+      "Bash(rmdir /Users/muyu/MuyuWorkSpace/FF-SaaSBuilder/skills /Users/muyu/MuyuWorkSpace/FF-SaaSBuilder/commands)"
+    ]
+  }
+}

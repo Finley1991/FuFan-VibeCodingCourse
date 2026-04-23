@@ -11,6 +11,12 @@ temp*.json
 .vscode/
 .idea/
 
+# Course materials: include .claude/ as teaching assets where explicitly committed
+!Stage6_SpecKit_Applied/Lesson11_SpecKit_Advanced_Practice/MyAgentHub/.claude/
+!Stage6_SpecKit_Applied/Lesson11_SpecKit_Advanced_Practice/MyAgentHub/.claude/**
+!Stage6_SpecKit_Applied/Lesson11_SpecKit_Advanced_Practice/MyAgentHub/agenthub/.claude/
+!Stage6_SpecKit_Applied/Lesson11_SpecKit_Advanced_Practice/MyAgentHub/agenthub/.claude/**
+
 # Python
 __pycache__/
 *.py[cod]
