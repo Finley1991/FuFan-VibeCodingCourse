@@ -23,7 +23,10 @@ This lesson introduces the Superpowers framework — a TDD-first specification-d
 
 ## Project Assets
 
-- **[nanoclaw-dashboard](./nanoclaw-dashboard/)** (v1.0.0): SaaS-grade dark dashboard
+### Frontend — `nanoclaw-dashboard/` (v1.0.0)
+
+SaaS-grade dark dashboard.
+
 - Tech stack: `Node.js (built-in)` `Vanilla JS` `inline CSS`
 - Highlights:
   - Independent project (no NanoClaw fork pollution)
@@ -33,6 +36,15 @@ This lesson introduces the Superpowers framework — a TDD-first specification-d
 - Scope (intentional YAGNI):
   - All data is mocked (4 stat cards, agent list, workflow, logs, security panel)
   - The A0 case section will be rewritten as Next.js 14 + Tailwind with real APIs (upgraded to v2.0.0 later)
+
+### Backend — [`nanoclaw-v2-backend/`](./nanoclaw-v2-backend/)
+
+NanoClaw v2 backend (full source) — the CLI runtime that the dashboard talks to via `pnpm run chat`.
+
+- Includes `.claude/`, `.superpowers/`, `.omc/` AI workflow configurations
+- `node_modules/`, `dist/`, `logs/`, `data/`, `.env`, `.git/` are excluded
+- Copy `.env.example` to `.env` and fill in your own configuration before running
+- Point the dashboard's `NANOCLAW_ROOT` env var to this folder when running locally
 
 ## About `.excalidraw` Files
 

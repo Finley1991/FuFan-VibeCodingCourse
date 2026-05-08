@@ -1,0 +1,7 @@
+{
+  "tool_name": "Read",
+  "tool_input_preview": "{\"file_path\":\"/Users/muyu/.claude/projects/-Users-muyu-projects-nanoclaw-fork-nanoclaw-v2/43ea5a00-137a-48a5-8a05-74d111f97ed9.jsonl\",\"limit\":100}",
+  "error": "File content (123509 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "timestamp": "2026-05-08T06:43:52.394Z",
+  "retry_count": 1
+}

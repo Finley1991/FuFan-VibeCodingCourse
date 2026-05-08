@@ -23,7 +23,10 @@
 
 ## 实战项目
 
-- **[nanoclaw-dashboard](./nanoclaw-dashboard/)**（v1.0.0）：SaaS 级暗色 Dashboard
+### 前端 —— `nanoclaw-dashboard/`（v1.0.0）
+
+SaaS 级暗色 Dashboard。
+
 - 技术栈：`Node.js（原生）` `原生 JS` `内联 CSS`
 - 亮点：
   - 独立项目（不污染 NanoClaw fork）
@@ -33,6 +36,15 @@
 - 边界（有意 YAGNI）：
   - 数据全部 mock（4 统计卡 / Agent 列表 / 工作流 / 日志 / 安全防线）
   - 后续 A0 案例段会重写为 Next.js 14 + Tailwind + 真接口（届时升级 v2.0.0）
+
+### 后端 —— [`nanoclaw-v2-backend/`](./nanoclaw-v2-backend/)
+
+NanoClaw v2 后端（完整源码）—— Dashboard 通过 `pnpm run chat` 调用的 CLI 运行时。
+
+- 含 `.claude/`、`.superpowers/`、`.omc/` 等 AI 工作流配置
+- `node_modules/`、`dist/`、`logs/`、`data/`、`.env`、`.git/` 已从仓库中排除
+- 运行前请将 `.env.example` 复制为 `.env` 并填入个人配置
+- 本地运行时，将 Dashboard 的 `NANOCLAW_ROOT` 环境变量指向此目录
 
 ## 关于 `.excalidraw` 文件
 
