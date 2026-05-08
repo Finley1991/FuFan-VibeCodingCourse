@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NanoClaw Dashboard</title>
+<style>
+:root {
+  --bg: #0a0a0a;
+  --card: #161616;
+  --card-hover: #1c1c1c;
+  --border: #262626;
+  --border-hover: #3a3a3a;
+  --text: #f5f5f5;
+  --text-sub: #a1a1a1;
+  --text-weak: #737373;
+  --accent: #ff8c1a;
+  --accent-dim: rgba(255,140,26,0.15);
+  --green: #22c55e;
+  --green-dim: rgba(34,197,94,0.15);
+  --red: #ef4444;
+  --red-dim: rgba(239,68,68,0.15);
+  --purple: #a855f7;
+  --purple-dim: rgba(168,85,247,0.15);
+  --blue: #3b82f6;
+  --blue-dim: rgba(59,130,246,0.15);
+  --radius-card: 12px;
+  --radius-btn: 8px;
+  --radius-badge: 6px;
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.3);
+  --font: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.5;
+  display: flex;
+}
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #444; }
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  width: 240px;
+  min-width: 240px;
+  background: var(--card);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+.sidebar-logo {
+  padding: 20px 16px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-icon {
+  width: 36px; height: 36px;
+  background: var(--accent);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(255,140,26,0.35);
+}
+.logo-text { display: flex; flex-direction: column; }
+.logo-name { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo-ver { font-size: 11px; color: var(--text-weak); }
+
+.nav-section { padding: 16px 8px 4px; }
+.nav-group-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-weak);
+  padding: 0 8px 6px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 8px;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  color: var(--text-sub);
+  font-size: 13.5px;
+  transition: background 0.15s, color 0.15s;
+  margin-bottom: 1px;
+  text-decoration: none;
+  user-select: none;
+}
+.nav-item:hover { background: rgba(255,255,255,0.05); color: var(--text); }
+.nav-item.active {
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-weight: 500;
+}
+.nav-item .nav-icon { width: 16px; text-align: center; font-size: 14px; }
+.nav-item .nav-badge {
+  margin-left: auto;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+
+.sidebar-platform {
+  margin-top: auto;
+  padding: 12px 8px 16px;
+  border-top: 1px solid var(--border);
+}
+.platform-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-weak);
+  padding: 0 8px 8px;
+}
+.platform-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  color: var(--text-sub);
+}
+.platform-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dot-green { background: var(--green); box-shadow: 0 0 5px var(--green); }
+.dot-yellow { background: #eab308; }
+.dot-gray { background: #444; }
+.platform-status { margin-left: auto; font-size: 11px; color: var(--text-weak); }
+
+/* ─── MAIN WRAPPER ─── */
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ─── TOPBAR ─── */
+.topbar {
+  height: 60px;
+  min-height: 60px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 12px;
+}
+.topbar-search {
+  flex: 1;
+  max-width: 420px;
+  position: relative;
+}
+.topbar-search input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-btn);
+  padding: 7px 12px 7px 36px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: var(--font);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.topbar-search input::placeholder { color: var(--text-weak); }
+.topbar-search input:focus { border-color: var(--accent); }
+.topbar-search .search-icon {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-weak);
+  font-size: 14px;
+}
+.topbar-search .search-kbd {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #222;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 10px;
+  color: var(--text-weak);
+  padding: 1px 5px;
+}
+.topbar-spacer { flex: 1; }
+.topbar-badges { display: flex; align-items: center; gap: 8px; }
+.tb-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-badge);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: default;
+}
+.tb-badge-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
+.tb-badge-purple { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(168,85,247,0.25); }
+.topbar-actions { display: flex; align-items: center; gap: 8px; }
+.topbar-icon-btn {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--text-sub);
+  transition: background 0.15s, border-color 0.15s;
+}
+.topbar-icon-btn:hover { background: var(--card-hover); border-color: var(--border-hover); color: var(--text); }
+.topbar-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(255,140,26,0.3);
+}
+.notif-dot {
+  position: relative;
+}
+.notif-dot::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 1.5px solid var(--card);
+}
+
+/* ─── CONTENT ─── */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ─── PAGE HEADER ─── */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.page-title { font-size: 18px; font-weight: 700; letter-spacing: -0.4px; }
+.page-subtitle { font-size: 13px; color: var(--text-weak); margin-top: 2px; }
+.page-header-right { display: flex; gap: 8px; }
+.btn {
+  padding: 7px 14px;
+  border-radius: var(--radius-btn);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font);
+  transition: opacity 0.15s, background 0.15s;
+}
+.btn:hover { opacity: 0.85; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-secondary { background: var(--card); color: var(--text-sub); border: 1px solid var(--border); }
+
+/* ─── STATS GRID ─── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.15s, background 0.15s;
+  cursor: default;
+}
+.stat-card:hover { border-color: var(--border-hover); background: var(--card-hover); }
+.stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-weak);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.stat-number {
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: 8px;
+}
+.stat-sub {
+  font-size: 12px;
+  color: var(--text-sub);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.stat-up { color: var(--green); }
+.stat-progress {
+  height: 3px;
+  background: #222;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.stat-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.mini-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 24px;
+  margin-top: 8px;
+}
+.mini-bar {
+  flex: 1;
+  background: #2a2a2a;
+  border-radius: 2px;
+  transition: background 0.15s;
+}
+.mini-bar.today { background: var(--accent); opacity: 0.8; }
+.mini-bar.prev { background: #333; }
+
+/* ─── MIDDLE GRID ─── */
+.mid-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ─── PANEL CARD ─── */
+.panel-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+.panel-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.panel-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.panel-title .panel-count {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-weak);
+  margin-left: 2px;
+}
+.panel-link {
+  font-size: 12px;
+  color: var(--text-weak);
+  cursor: pointer;
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+.panel-link:hover { color: var(--accent); }
+
+/* ─── AGENT TABLE ─── */
+.agent-table { width: 100%; border-collapse: collapse; }
+.agent-table thead tr {
+  background: rgba(255,255,255,0.02);
+}
+.agent-table th {
+  padding: 9px 16px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-weak);
+  border-bottom: 1px solid var(--border);
+}
+.agent-table td {
+  padding: 11px 16px;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(38,38,38,0.6);
+  color: var(--text);
+  vertical-align: middle;
+}
+.agent-table tr:last-child td { border-bottom: none; }
+.agent-table tbody tr {
+  transition: background 0.12s;
+}
+.agent-table tbody tr:hover td { background: var(--card-hover); }
+.agent-row-dim td { color: var(--text-weak); }
+.agent-name-cell { display: flex; align-items: center; gap: 8px; }
+.agent-avatar {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.agent-avatar-active { background: var(--accent-dim); }
+.agent-avatar-dim { background: #1e1e1e; }
+.agent-name { font-weight: 500; font-size: 13px; }
+.agent-group { font-size: 11px; color: var(--text-weak); }
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.status-running { background: var(--green-dim); color: var(--green); }
+.status-pending { background: rgba(234,179,8,0.15); color: #eab308; }
+.status-idle { background: #1e1e1e; color: var(--text-weak); }
+.status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.status-running .status-dot { animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.count-cell { font-weight: 600; color: var(--text); }
+.count-cell-dim { color: var(--text-weak); font-weight: 400; }
+.time-cell { color: var(--text-sub); font-size: 12px; }
+
+/* ─── WORKFLOW ─── */
+.workflow-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+.workflow-group {}
+.workflow-group-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-weak);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.workflow-count-badge {
+  background: #1e1e1e;
+  border-radius: 10px;
+  padding: 1px 7px;
+  font-size: 10px;
+  color: var(--text-weak);
+}
+.workflow-empty {
+  background: #111;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-weak);
+}
+.workflow-item {
+  background: #111;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+}
+.workflow-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.workflow-item-name { font-size: 13px; font-weight: 500; color: var(--text); }
+.workflow-item-tag {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: var(--blue-dim);
+  color: var(--blue);
+  font-weight: 500;
+}
+.workflow-progress-bar {
+  height: 4px;
+  background: #222;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.workflow-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #ffb347);
+  border-radius: 2px;
+  animation: progress-anim 3s ease-in-out infinite alternate;
+}
+@keyframes progress-anim {
+  from { width: 40%; }
+  to { width: 75%; }
+}
+.workflow-progress-label {
+  font-size: 11px;
+  color: var(--text-weak);
+  display: flex;
+  justify-content: space-between;
+}
+.workflow-complete-count {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--green-dim);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--green);
+  font-weight: 500;
+}
+
+/* ─── BOTTOM GRID ─── */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ─── LOG LIST ─── */
+.log-list { padding: 4px 0; }
+.log-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(38,38,38,0.5);
+  transition: background 0.12s;
+}
+.log-item:last-child { border-bottom: none; }
+.log-item:hover { background: rgba(255,255,255,0.02); }
+.log-time {
+  font-size: 11px;
+  color: var(--text-weak);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  margin-top: 1px;
+  min-width: 56px;
+}
+.log-tag {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+  margin-top: 1px;
+}
+.log-tag-init { background: var(--accent-dim); color: var(--accent); }
+.log-tag-chat { background: var(--blue-dim); color: var(--blue); }
+.log-tag-verify { background: var(--green-dim); color: var(--green); }
+.log-tag-setup { background: var(--accent-dim); color: var(--accent); }
+.log-tag-docker { background: rgba(234,179,8,0.15); color: #eab308; }
+.log-tag-git { background: var(--purple-dim); color: var(--purple); }
+.log-desc { flex: 1; font-size: 12.5px; color: var(--text-sub); line-height: 1.4; }
+.log-dur {
+  font-size: 11px;
+  color: var(--text-weak);
+  white-space: nowrap;
+  margin-top: 1px;
+  min-width: 36px;
+  text-align: right;
+}
+
+/* ─── SECURITY ─── */
+.security-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; }
+.security-sub-card {
+  background: #111;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.security-sub-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.security-sub-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sec-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+.sec-badge-green { background: var(--green-dim); color: var(--green); }
+.sec-badge-purple { background: var(--purple-dim); color: var(--purple); }
+.security-sub-desc {
+  font-size: 12px;
+  color: var(--text-weak);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.sec-progress {
+  height: 3px;
+  background: #222;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.sec-progress-fill {
+  height: 100%;
+  background: var(--green);
+  border-radius: 2px;
+}
+.sec-progress-fill-purple {
+  height: 100%;
+  background: var(--purple);
+  border-radius: 2px;
+}
+
+/* ─── CHAT BUBBLE ─── */
+.chat-bubble {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255,140,26,0.45);
+  z-index: 1000;
+  transition: transform 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+.chat-bubble:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(255,140,26,0.55); }
+.chat-bubble:active { transform: scale(0.95); }
+
+/* ─── CHAT PANEL ─── */
+.chat-panel {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  width: 360px;
+  height: 540px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(16px) scale(0.97);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+.chat-panel.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+.chat-panel-header {
+  background: linear-gradient(135deg, var(--accent) 0%, #e67300 100%);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.chat-panel-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.chat-online-dot {
+  width: 7px; height: 7px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: pulse 2s ease-in-out infinite;
+}
+.chat-close-btn {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s;
+}
+.chat-close-btn:hover { background: rgba(255,255,255,0.35); }
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chat-msg {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+}
+.chat-msg.user { align-self: flex-end; align-items: flex-end; }
+.chat-msg.assistant { align-self: flex-start; align-items: flex-start; }
+.chat-bubble-inner {
+  padding: 9px 13px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.45;
+  word-break: break-word;
+}
+.chat-msg.user .chat-bubble-inner {
+  background: var(--accent);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.chat-msg.assistant .chat-bubble-inner {
+  background: #1e1e1e;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 4px;
+}
+.chat-msg-time {
+  font-size: 10px;
+  color: var(--text-weak);
+  margin-top: 3px;
+  padding: 0 4px;
+}
+.chat-typing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 14px;
+  background: #1e1e1e;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  border-bottom-left-radius: 4px;
+  width: fit-content;
+}
+.typing-dot {
+  width: 6px; height: 6px;
+  background: var(--text-weak);
+  border-radius: 50%;
+  animation: typing-bounce 1.2s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+.chat-input-area {
+  border-top: 1px solid var(--border);
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  background: #111;
+}
+.chat-input {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-btn);
+  padding: 8px 12px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: var(--font);
+  outline: none;
+  resize: none;
+  line-height: 1.4;
+  min-height: 36px;
+  max-height: 100px;
+  transition: border-color 0.15s;
+}
+.chat-input::placeholder { color: var(--text-weak); }
+.chat-input:focus { border-color: var(--accent); }
+.chat-send-btn {
+  width: 36px; height: 36px;
+  border-radius: var(--radius-btn);
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+}
+.chat-send-btn:hover { opacity: 0.85; }
+.chat-send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ─── DIVIDER ─── */
+.wf-divider { height: 1px; background: var(--border); margin: 4px 0; }
+</style>
+</head>
+<body>
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">🐾</div>
+    <div class="logo-text">
+      <div class="logo-name">NanoClaw</div>
+      <div class="logo-ver">v2.0.33</div>
+    </div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-group-title">导航</div>
+    <a class="nav-item active">
+      <span class="nav-icon">⊞</span> 控制台
+    </a>
+    <a class="nav-item">
+      <span class="nav-icon">🤖</span> Agent 管理
+      <span class="nav-badge">1</span>
+    </a>
+    <a class="nav-item">
+      <span class="nav-icon">⚡</span> Skills 市场
+      <span class="nav-badge">14</span>
+    </a>
+    <a class="nav-item">
+      <span class="nav-icon">⚙</span> 工作流编排
+    </a>
+    <a class="nav-item">
+      <span class="nav-icon">📋</span> 运行日志
+    </a>
+    <a class="nav-item">
+      <span class="nav-icon">🛡</span> 安全中心
+    </a>
+    <a class="nav-item">
+      <span class="nav-icon">⚙️</span> 系统设置
+    </a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-group-title">快捷操作</div>
+    <a class="nav-item">
+      <span class="nav-icon">➕</span> 创建新 Agent
+    </a>
+    <a class="nav-item">
+      <span class="nav-icon">⬇</span> 导入 Skill
+    </a>
+  </div>
+
+  <div class="sidebar-platform">
+    <div class="platform-title">平台连接</div>
+    <div class="platform-item">
+      <div class="platform-dot dot-green"></div>
+      <span>CLI</span>
+      <span class="platform-status">已连接</span>
+    </div>
+    <div class="platform-item">
+      <div class="platform-dot dot-yellow"></div>
+      <span>iMessage</span>
+      <span class="platform-status">配置中</span>
+    </div>
+    <div class="platform-item">
+      <div class="platform-dot dot-gray"></div>
+      <span>Telegram</span>
+      <span class="platform-status">未配置</span>
+    </div>
+    <div class="platform-item">
+      <div class="platform-dot dot-gray"></div>
+      <span>Discord</span>
+      <span class="platform-status">未配置</span>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main-wrapper">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="搜索 Skills、Agents、工作流...">
+      <span class="search-kbd">⌘K</span>
+    </div>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-badges">
+      <div class="tb-badge tb-badge-green">
+        <span>●</span> 1 Agents 运行中
+      </div>
+      <div class="tb-badge tb-badge-purple">
+        <span>◆</span> 14 Skills 已部署
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <div class="topbar-icon-btn notif-dot" title="通知">🔔</div>
+      <div class="topbar-avatar" title="木羽">MY</div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div>
+        <div class="page-title">控制台</div>
+        <div class="page-subtitle">欢迎回来，所有系统运行正常 · 今天已处理 7 次对话</div>
+      </div>
+      <div class="page-header-right">
+        <button class="btn btn-secondary">导出报告</button>
+        <button class="btn btn-primary">+ 新建 Agent</button>
+      </div>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <div class="stat-label">🤖 Agent 总数</div>
+        <div class="stat-number">1</div>
+        <div class="stat-sub">
+          <span style="color:var(--green)">● 1 运行中</span>
+          &nbsp;/&nbsp; 0 暂停
+        </div>
+        <div class="stat-progress">
+          <div class="stat-progress-fill" style="width:100%"></div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">⚡ Skills 总数</div>
+        <div class="stat-number">14</div>
+        <div class="stat-sub">0 自定义 &nbsp;/&nbsp; 14 第三方</div>
+        <div class="stat-progress">
+          <div class="stat-progress-fill" style="width:35%"></div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">⚡ 今日执行</div>
+        <div class="stat-number">7</div>
+        <div class="stat-sub">
+          <span class="stat-up">↑ +233%</span>&nbsp;较昨日同期
+        </div>
+        <div class="stat-progress">
+          <div class="stat-progress-fill" style="width:70%"></div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">💰 API 消耗</div>
+        <div class="stat-number" style="font-size:36px;letter-spacing:-1px">$0.04</div>
+        <div class="stat-sub" style="justify-content:space-between">
+          <span>今日</span>
+          <span style="color:var(--text-weak)">本月 $0.04</span>
+        </div>
+        <div class="mini-bars">
+          <div class="mini-bar prev" style="height:4px"></div>
+          <div class="mini-bar prev" style="height:3px"></div>
+          <div class="mini-bar prev" style="height:5px"></div>
+          <div class="mini-bar prev" style="height:2px"></div>
+          <div class="mini-bar prev" style="height:4px"></div>
+          <div class="mini-bar prev" style="height:3px"></div>
+          <div class="mini-bar today" style="height:20px"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Middle Row -->
+    <div class="mid-grid">
+
+      <!-- Agent Table -->
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title">🤖 活跃 Agent 列表 <span class="panel-count">· 5 已配置</span></div>
+          <div class="panel-link">查看全部 →</div>
+        </div>
+        <table class="agent-table">
+          <thead>
+            <tr>
+              <th>AGENT 名称</th>
+              <th>状态</th>
+              <th>今日执行</th>
+              <th>最后运行</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="agent-name-cell">
+                  <div class="agent-avatar agent-avatar-active">🐾</div>
+                  <div>
+                    <div class="agent-name">Andy</div>
+                    <div class="agent-group">NanoClaw 默认</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="status-badge status-running">
+                  <span class="status-dot"></span> 运行中
+                </span>
+              </td>
+              <td><span class="count-cell">7 次</span></td>
+              <td><span class="time-cell">刚刚</span></td>
+            </tr>
+            <tr class="agent-row-dim">
+              <td>
+                <div class="agent-name-cell">
+                  <div class="agent-avatar agent-avatar-dim">📰</div>
+                  <div>
+                    <div class="agent-name" style="color:var(--text-weak)">知识日报 Agent</div>
+                    <div class="agent-group">内容生产</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="status-badge status-pending"><span class="status-dot"></span> 待配置</span></td>
+              <td><span class="count-cell-dim">0 次</span></td>
+              <td><span class="time-cell">—</span></td>
+            </tr>
+            <tr class="agent-row-dim">
+              <td>
+                <div class="agent-name-cell">
+                  <div class="agent-avatar agent-avatar-dim">✍️</div>
+                  <div>
+                    <div class="agent-name" style="color:var(--text-weak)">内容写作 Agent</div>
+                    <div class="agent-group">创作助手</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="status-badge status-idle"><span class="status-dot"></span> 未启用</span></td>
+              <td><span class="count-cell-dim">0 次</span></td>
+              <td><span class="time-cell">—</span></td>
+            </tr>
+            <tr class="agent-row-dim">
+              <td>
+                <div class="agent-name-cell">
+                  <div class="agent-avatar agent-avatar-dim">📊</div>
+                  <div>
+                    <div class="agent-name" style="color:var(--text-weak)">数据分析 Agent</div>
+                    <div class="agent-group">数据洞察</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="status-badge status-idle"><span class="status-dot"></span> 未启用</span></td>
+              <td><span class="count-cell-dim">0 次</span></td>
+              <td><span class="time-cell">—</span></td>
+            </tr>
+            <tr class="agent-row-dim">
+              <td>
+                <div class="agent-name-cell">
+                  <div class="agent-avatar agent-avatar-dim">🔍</div>
+                  <div>
+                    <div class="agent-name" style="color:var(--text-weak)">竞品监控 Agent</div>
+                    <div class="agent-group">情报收集</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="status-badge status-idle"><span class="status-dot"></span> 未启用</span></td>
+              <td><span class="count-cell-dim">0 次</span></td>
+              <td><span class="time-cell">—</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Workflow Status -->
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title">⚙️ 工作流执行状态</div>
+          <div class="panel-link">管理 →</div>
+        </div>
+        <div class="workflow-body">
+
+          <div class="workflow-group">
+            <div class="workflow-group-label">
+              <span style="color:var(--blue)">●</span> 排队中
+              <span class="workflow-count-badge">0</span>
+            </div>
+            <div class="workflow-empty">暂无排队任务</div>
+          </div>
+
+          <div class="wf-divider"></div>
+
+          <div class="workflow-group">
+            <div class="workflow-group-label">
+              <span style="color:#eab308">●</span> 执行中
+              <span class="workflow-count-badge">1</span>
+            </div>
+            <div class="workflow-item">
+              <div class="workflow-item-top">
+                <div class="workflow-item-name">🐾 Andy 对话会话</div>
+                <div class="workflow-item-tag">cli channel</div>
+              </div>
+              <div class="workflow-progress-bar">
+                <div class="workflow-progress-fill"></div>
+              </div>
+              <div class="workflow-progress-label">
+                <span>等待用户输入</span>
+                <span style="color:var(--accent)">进行中</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="wf-divider"></div>
+
+          <div class="workflow-group">
+            <div class="workflow-group-label">
+              <span style="color:var(--green)">●</span> 已完成
+              <span class="workflow-count-badge">7</span>
+            </div>
+            <div class="workflow-complete-count">
+              ✓ &nbsp; 今日已完成 7 次执行，平均耗时 18s
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="bottom-grid">
+
+      <!-- Recent Logs -->
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title">📋 最近执行日志</div>
+          <div class="panel-link">完整日志 →</div>
+        </div>
+        <div class="log-list">
+          <div class="log-item">
+            <div class="log-time">13:25:33</div>
+            <div class="log-tag log-tag-init">init</div>
+            <div class="log-desc">创建 Andy agent group via init-cli-agent.ts</div>
+            <div class="log-dur">0.3s</div>
+          </div>
+          <div class="log-item">
+            <div class="log-time">13:23:10</div>
+            <div class="log-tag log-tag-chat">chat</div>
+            <div class="log-desc">Andy ping → pong · 首次对话验证成功</div>
+            <div class="log-dur">7s</div>
+          </div>
+          <div class="log-item">
+            <div class="log-time">13:21:05</div>
+            <div class="log-tag log-tag-verify">verify</div>
+            <div class="log-desc">setup verify failed → Claude 诊断接管</div>
+            <div class="log-dur">42s</div>
+          </div>
+          <div class="log-item">
+            <div class="log-time">13:18:42</div>
+            <div class="log-tag log-tag-setup">setup</div>
+            <div class="log-desc">OneCLI vault 注入 DeepSeek-V4 凭证</div>
+            <div class="log-dur">1m</div>
+          </div>
+          <div class="log-item">
+            <div class="log-time">13:15:00</div>
+            <div class="log-tag log-tag-docker">docker</div>
+            <div class="log-desc">Docker Desktop daemon 拉起 · nanoclaw-agent:latest</div>
+            <div class="log-dur">45s</div>
+          </div>
+          <div class="log-item">
+            <div class="log-time">13:08:00</div>
+            <div class="log-tag log-tag-git">git</div>
+            <div class="log-desc">clone NanoClaw v2.0.33 · 建立工作目录</div>
+            <div class="log-dur">12s</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Security -->
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title">🛡️ 安全防线状态</div>
+          <div class="panel-link">设置 ⚙</div>
+        </div>
+        <div class="security-body">
+
+          <div class="security-sub-card">
+            <div class="security-sub-header">
+              <div class="security-sub-title">💰 成本控制</div>
+              <div class="sec-badge sec-badge-green">正常</div>
+            </div>
+            <div class="security-sub-desc">今日消耗 $0.04 / 预算 $10.00</div>
+            <div class="sec-progress">
+              <div class="sec-progress-fill" style="width:0.4%"></div>
+            </div>
+            <div style="font-size:11px;color:var(--text-weak);margin-top:5px">预算使用率 0.4%</div>
+          </div>
+
+          <div class="security-sub-card">
+            <div class="security-sub-header">
+              <div class="security-sub-title">🔒 Skill 审核</div>
+              <div class="sec-badge sec-badge-purple">14 已审核</div>
+            </div>
+            <div class="security-sub-desc">14 个第三方 Skills 已完成审核 · 0 个等待审核</div>
+            <div class="sec-progress">
+              <div class="sec-progress-fill-purple" style="width:100%"></div>
+            </div>
+          </div>
+
+          <div class="security-sub-card">
+            <div class="security-sub-header">
+              <div class="security-sub-title">👤 人工审批</div>
+              <div class="sec-badge sec-badge-green">已开启</div>
+            </div>
+            <div class="security-sub-desc">高风险操作需人工审批 · 今日拦截 0 次</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<!-- ═══ CHAT BUBBLE ═══ -->
+<div class="chat-bubble" id="chatBubble" onclick="toggleChat()" title="和 Andy 对话">💬</div>
+
+<!-- ═══ CHAT PANEL ═══ -->
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-panel-header">
+    <div class="chat-panel-title">
+      <span>🐾</span>
+      <span>和 Andy 对话</span>
+      <div class="chat-online-dot"></div>
+    </div>
+    <button class="chat-close-btn" onclick="toggleChat()">✕</button>
+  </div>
+
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg assistant">
+      <div class="chat-bubble-inner">你好！我是 Andy，有什么我可以帮你的吗？😊</div>
+      <div class="chat-msg-time">系统消息</div>
+    </div>
+  </div>
+
+  <div class="chat-input-area">
+    <textarea
+      class="chat-input"
+      id="chatInput"
+      placeholder="发消息给 Andy..."
+      rows="1"
+    ></textarea>
+    <button class="chat-send-btn" id="chatSendBtn" onclick="sendMessage()">➤</button>
+  </div>
+</div>
+
+<script>
+let chatOpen = false;
+let sending = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  const panel = document.getElementById('chatPanel');
+  const bubble = document.getElementById('chatBubble');
+  if (chatOpen) {
+    panel.classList.add('open');
+    bubble.style.transform = 'scale(0.9)';
+    bubble.style.opacity = '0.7';
+    setTimeout(() => document.getElementById('chatInput').focus(), 250);
+  } else {
+    panel.classList.remove('open');
+    bubble.style.transform = '';
+    bubble.style.opacity = '';
+  }
+}
+
+function getTime() {
+  return new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+}
+
+function appendMsg(role, text) {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = `chat-msg ${role}`;
+
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble-inner';
+  bubble.textContent = text;
+
+  const time = document.createElement('div');
+  time.className = 'chat-msg-time';
+  time.textContent = getTime();
+
+  div.appendChild(bubble);
+  div.appendChild(time);
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+
+function showTyping() {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg assistant';
+  div.id = 'typingIndicator';
+
+  const typing = document.createElement('div');
+  typing.className = 'chat-typing';
+  typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+
+  div.appendChild(typing);
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function removeTyping() {
+  const el = document.getElementById('typingIndicator');
+  if (el) el.remove();
+}
+
+async function sendMessage() {
+  if (sending) return;
+  const input = document.getElementById('chatInput');
+  const btn = document.getElementById('chatSendBtn');
+  const text = input.value.trim();
+  if (!text) return;
+
+  input.value = '';
+  input.style.height = 'auto';
+  sending = true;
+  btn.disabled = true;
+
+  appendMsg('user', text);
+  showTyping();
+
+  try {
+    const resp = await fetch('/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text })
+    });
+
+    removeTyping();
+
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({ error: `HTTP ${resp.status}` }));
+      appendMsg('assistant', `⚠️ 错误：${err.error || resp.statusText}`);
+    } else {
+      const data = await resp.json();
+      appendMsg('assistant', data.reply || '（无内容）');
+    }
+  } catch (e) {
+    removeTyping();
+    appendMsg('assistant', `⚠️ 网络错误：${e.message}`);
+  } finally {
+    sending = false;
+    btn.disabled = false;
+    input.focus();
+  }
+}
+
+// Enter to send, Shift+Enter for newline
+document.getElementById('chatInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+});
+
+// Auto-resize textarea
+document.getElementById('chatInput').addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+});
+
+// Nav item click
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', function() {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// Cmd+K focus search
+document.addEventListener('keydown', e => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    document.querySelector('.topbar-search input').focus();
+  }
+});
+</script>
+</body>
+</html>

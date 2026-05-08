@@ -1,0 +1,22 @@
+{
+  "name": "nanoclaw-dashboard",
+  "version": "0.1.0",
+  "description": "SaaS 级 Dashboard 前端 · NanoClaw 后端的可视化控制台 · 入门段雏形（A0 案例段会升级为 Next.js 14 + Tailwind 产品级版本）",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "nanoclaw",
+    "dashboard",
+    "claude-superpowers",
+    "saas-prototype"
+  ],
+  "author": "九天老师 · Claude Superpowers 课程",
+  "license": "MIT"
+}
